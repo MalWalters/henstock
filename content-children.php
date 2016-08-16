@@ -19,7 +19,7 @@ $parent = new WP_Query( $args );
 if ( $parent->have_posts() ) : ?>
 
     <?php while ( $parent->have_posts() ) : $parent->the_post(); ?>
-
+    <div class="child-excerpt">
         <article id="post-<?php the_ID(); ?>" <?php post_class($column); ?>>
 
 		<header class="entry-header">
@@ -36,7 +36,7 @@ if ( $parent->have_posts() ) : ?>
             </div>
 
         </article>
-
+    </div>
     <?php endwhile; ?>
 
 <?php endif; wp_reset_query(); ?>
