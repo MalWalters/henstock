@@ -41,25 +41,7 @@ get_header(); ?>
 
 					<?php endwhile; // End of the loop. ?>
 <!--Child Page Thumbnails Start-->
-<?
-$child_pages = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_parent = ".$post->ID." AND post_type = 'page' ORDER BY menu_order", 'OBJECT');
-
-if ( $child_pages ) :
-    foreach ( $child_pages as $pageChild ) :
-        setup_postdata( $pageChild );
-        $thumbnail = get_the_post_thumbnail($pageChild->ID, 'thumbnail');
-        if($thumbnail == "") continue; // Skip pages without a thumbnail
-?>
-        <div class="child-thumb">
-          <a href="<?= get_permalink($pageChild->ID) ?>" rel="bookmark" title="<?= $pageChild->post_title ?>">
-            <?= $pageChild->post_title ?><br /><?= $thumbnail ?>
-          </a>
-        </div>
-<?
-    endforeach;
-endif;
-?>
-<div style="clear:left;"></div>
+<?php include("content-children.php"); ?>
 <!--Child Page Thumbnails End-->
 				</main><!-- #main -->
 				
@@ -71,4 +53,3 @@ endif;
 	</div><!-- #content -->
 
 <?php get_footer(); ?>
-
